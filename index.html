@@ -1,0 +1,214 @@
+
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Signal Reconstruction from Mel-spectrogram Based on Bi-level Consistency of Full-band Magnitude and Phase</title>
+      <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+      <script>
+         function play(path) {{
+           var player = document.getElementById('player');
+           player.src = path;
+           player.play();
+         }}
+      </script>
+      <style>
+         .audio-cell {
+         /* Center audio widgets in the table cell. */
+         text-align: center;
+         padding-bottom: 1px;
+         padding-top: 1px;
+         }
+         .audio-cell-padded {
+         text-align: center;
+         padding-bottom: 10px;
+         padding-top: 10px;
+         }
+         .audio-header {
+         /* Don't wrap header text. */
+         white-space: nowrap;
+         /* Some breaking space between headers for readability. */
+         padding-right: 5px;
+         padding-left: 5px;
+         }
+         .reference-cell {
+         /* For uniformity and to wrap long reference text, limit the reference cell's width. */
+         width: 25%;
+         padding-top: 20px;
+         padding-bottom: 20px;
+         }
+         .sample audio {
+         vertical-align: middle;
+         padding-left: 3px;
+         padding-right: 3px;
+         }
+         .round-button {
+         box-sizing: border-box;
+         display:block;
+         width:30px;
+         height:30px;
+         padding-top: 8px;
+         padding-left: 3px;
+         line-height: 6px;
+         border: 1.2px solid #000;
+         border-radius: 50%;
+         color: #000;
+         text-align:center;
+         background-color: rgba(0,0,0,0.00);
+         font-size:6px;
+         box-shadow: 0px 0px 2px rgba(0,0,0,1);
+         transition: all 0.2s ease;
+         }
+         .round-button:hover {
+         background-color: rgba(0,0,0,0.0);
+         box-shadow: 0px 0px 4px rgba(0,0,0,1);
+         }
+         .round-button:active {
+         background-color: rgba(0,0,0,0.01);
+         box-shadow: 0px 0px 1px rgba(0,0,0,1);
+         }
+      </style>
+   </head>
+   <body>
+     <div class="main">
+       <article>
+         <header>
+            <h1>Mel-Spectrogram Inversion via Alternating Direction Method of Multipliers</h1>
+         </header>
+      </article>
+      <div>
+        <p>
+		  Yoshiki Masuyama,
+        Natsuki Ueno,
+	  	  Nobutaka Ono,
+		</p>
+      </div>
+      <!-- <p><b>Abstract: </b>
+      </p> -->
+
+
+
+<hr>
+<h2 id="intermediate">Evaluation on Speech Signals :</h2>
+<p>
+This section shows examples of the reconstructed speech signals.
+Original speech signals are from a subset of the TIMIT dataset [1] and resampled at 16 kHz.
+For more details, please refer our paper.
+</p>
+
+<p>
+<center>
+<b>Speech 1 (ground-truth)</b><br />
+<audio controls=""><source src="data//speech1/si1464_original.wav"></audio><br /><br />
+<table>
+   <tbody>
+      <tr>
+         <td align="center"> </td>
+         <td align="center"> PG-GLA [2] </td>
+         <td align="center"> ADMM-GLA [3] </td>
+         <td align="center"> iPALM-Joint [4] </td>
+         <td align="center"> ADMM-Joint (Proposed) </td>
+      </tr>
+      <tr>
+         <td align="center"> 100 iterations </td>
+         <td align="center"> <audio controls=""><source src="data/speech1/si1464_pg-gla_100.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech1/si1464_admm-gla_100.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech1/si1464_ipalm-joint_100.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech1/si1464_admm-joint_100.wav"></audio></td>
+      </tr>
+      <tr>
+         <td align="center"> 500 iterations </td>
+         <td align="center"> <audio controls=""><source src="data/speech1/si1464_pg-gla_500.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech1/si1464_admm-gla_500.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech1/si1464_ipalm-joint_500.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech1/si1464_admm-joint_500.wav"></audio></td>
+      </tr>
+</tbody>
+</table><br />
+</center>
+</p>
+
+<p>
+   <center>
+   <b>Speech 2 (ground-truth)</b><br />
+   <audio controls=""><source src="data/speech2/sx156_original.wav"></audio><br /><br />
+   <table>
+      <tbody>
+         <tr>
+            <td align="center"> </td>
+            <td align="center"> PG-GLA [2] </td>
+            <td align="center"> ADMM-GLA [3] </td>
+            <td align="center"> iPALM-Joint [4] </td>
+            <td align="center"> ADMM-Joint (Proposed) </td>
+         </tr>
+         <tr>
+            <td align="center"> 100 iterations </td>
+            <td align="center"> <audio controls=""><source src="data/speech2/sx156_pg-gla_100.wav"></audio></td>
+            <td align="center"> <audio controls=""><source src="data/speech2/sx156_admm-gla_100.wav"></audio></td>
+            <td align="center"> <audio controls=""><source src="data/speech2/sx156_ipalm-joint_100.wav"></audio></td>
+            <td align="center"> <audio controls=""><source src="data/speech2/sx156_admm-joint_100.wav"></audio></td>
+         </tr>
+         <tr>
+            <td align="center"> 500 iterations </td>
+            <td align="center"> <audio controls=""><source src="data/speech2/sx156_pg-gla_500.wav"></audio></td>
+            <td align="center"> <audio controls=""><source src="data/speech2/sx156_admm-gla_500.wav"></audio></td>
+            <td align="center"> <audio controls=""><source src="data/speech2/sx156_ipalm-joint_500.wav"></audio></td>
+            <td align="center"> <audio controls=""><source src="data/speech2/sx156_admm-joint_500.wav"></audio></td>
+         </tr>
+   </tbody>
+   </table><br />
+   </center>
+   </p>
+
+<hr>
+<h2 id="intermediate">Evaluation on Music and Environmental Signals :</h2>
+<p>
+This section shows examples of foley sounds reconstructed with 500 iterations.
+Original foley sounds are from the development sets of DCASE2023 Task 7 [5] and sampled at 22.05 kHz.
+For more details, please refer our paper.
+</p>
+
+<p>
+<center>
+<table>
+   <tbody>
+       <tr>
+           <td align="center"> </td>
+           <td align="center"> Original</td>
+           <td align="center"> iPALM-Joint [4]</td>
+           <td align="center"> ADMM-Joint (Proposed)</td>
+       </tr>
+       <tr>
+         <td align="center"> DogBark </td>
+         <td align="center"> <audio controls=""><source src="data/foley_sounds/DogBark_original.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/foley_sounds/DogBark_ipalm-joint_500.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/foley_sounds/DogBark_admm-joint-500.wav"></audio></td>
+      </tr>
+      <tr>
+         <td align="center"> Footstep </td>
+         <td align="center"> <audio controls=""><source src="data/foley_sounds/Footstep_original.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/foley_sounds/Footstep_ipalm-joint_500.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/foley_sounds/Footstep_admm-joint_500.wav"></audio></td>
+      </tr>
+   </tbody>
+   </table><br />
+</center>
+</p>
+
+<hr>
+<h2 id="references">References:</h2>
+<p>
+[1] P. Mowlaee, J. Kulmer, J. Stahl, and F. Mayer, “Single Channel Phase-Aware Signal Processing in Speech Communication: Theory and Practice,” Wiley, 2016.
+[<a href="https://www2.spsc.tugraz.at/people/pmowlaee/PhaseLab.html">page</a>]<br/>
+[2] D. Griffin and J. Lim, “Signal Estimation from Modified Short-Time Fourier Transform,” IEEE Trans. Acoust., Speech, Signal Process., vol. 32, no. 2, pp. 236-243, Apr. 1984.
+[<a href="https://doi.org/10.1109/TASSP.1984.1164317">paper</a>]<br/>
+[3] Y. Masuyama, K. Yatabe, and Y. Oikawa, “Griffin-Lim Like Phase Recovery via Alternating Direction Method of Multipliers,” IEEE Signal Process. Lett., vol. 26, pp. 184-188, Jan. 2019.
+[<a href="https://doi.org/10.1109/LSP.2018.2884026">paper</a>]<br/>
+[4] Y. Masuyama, N. Ueno, and N. Ono, “Signal Reconstruction from Mel-Spectrogram Based on Bi-Level Consistency of Full-Band Magnitude and Phase,” IEEE Workshop Appl. Signal Process. Audio Acoust., Oct. 2023.
+[<a href="https://doi.org/10.1109/WASPAA58266.2023.10248111">paper</a>]<br/>
+[5] K. Choi, J. Im, L. Heller, B. McFee, K. Imoto, Y. Okamoto, M. Lagrange, and S. Takamichi, “Foley sound synthesis at the dcase 2023 challenge,” 2023.
+[<a href="https://dcase.community/challenge2023/task-foley-sound-synthesis">page</a>]<br/>
+</p>
+
+      </div>
+   </body>
+</html>
